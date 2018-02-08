@@ -75,7 +75,7 @@ assetsToLoad.push(image);
 let bombsDefused = 0;
 
 //The game timer
-gameTimer.time = 20;
+gameTimer.time = 1000;
 gameTimer.start();
 
 //Sprites we need to access by name
@@ -96,6 +96,10 @@ let moveUp = false;
 let moveDown = false;
 let moveRight = false;
 let moveLeft = false;
+let wasMovingUp = false;
+let wasMovingDown = false;
+let wasMovingRight = false;
+let wasMovingLeft = false;
 
 //Add keyboard listeners
 window.addEventListener("keydown", function(event)
@@ -104,18 +108,26 @@ window.addEventListener("keydown", function(event)
   {
     case UP:
       moveUp = true;
+      wasMovingDown = false;
+      wasMovingUp = false;
       break;
 
     case DOWN:
       moveDown = true;
+      wasMovingUp = false;
+      wasMovingDown = false;
       break;
 
     case RIGHT:
       moveRight = true;
+      wasMovingLeft = false;
+      wasMovingRight = false;
       break;
 
     case LEFT:
       moveLeft = true;
+      wasMovingRight = false;
+      wasMovingLeft = false;
       break;
   }
 }, false);
@@ -126,18 +138,26 @@ window.addEventListener("keyup", function(event)
   {
     case UP:
       moveUp = false;
+      wasMovingUp = true;
+
       break;
 
     case DOWN:
       moveDown = false;
+      wasMovingDown = true;
+
       break;
 
     case RIGHT:
       moveRight = false;
+      wasMovingRight = true;
+
       break;
 
     case LEFT:
       moveLeft = false;
+      wasMovingLeft = true;
+
       break;
   }
 }, false);
@@ -310,40 +330,76 @@ function update()
 
 function playGame()
 {
+
+  let speed = 4;
   //Up
   if(moveUp && !moveDown)
   {
-    alien.vy = -4;
+      alien.vy = -speed;
   }
   //Down
   if(!moveUp && moveDown)
   {
-    alien.vy = 4;
+      alien.vy = speed;
   }
   //Left
   if(moveLeft && !moveRight)
   {
-    alien.vx = -4;
+      alien.vx = -speed;
   }
   //Right
   if(!moveLeft && moveRight)
   {
-    alien.vx = 4;
+      alien.vx = speed;
   }
 
   //Set the alien's velocity to zero if none of the keys are being pressed
-  if(!moveUp && !moveDown)
-  {
-    alien.vy = 0;
-  }
   if(!moveLeft && !moveRight)
   {
     alien.vx = 0;
   }
 
+  if(!moveUp && !moveDown)
+  {
+    alien.vy = 0;
+  }
+
+  //Align to grid
+  let gridSize = 64;
+  let alignSpeed = 2
+
+  if(alien.vx === 0 || alien.vy ===0)
+  {
+    if(alien.x % gridSize !== 0)
+    {
+      if(wasMovingLeft)
+      {
+        alien.x -= alignSpeed;
+      }
+      if(wasMovingRight)
+      {
+        alien.x += alignSpeed;
+      }
+    }
+    if(alien.y % gridSize !== 0)
+    {
+      if(wasMovingUp)
+      {
+        alien.y -= alignSpeed;
+      }
+      if(wasMovingDown)
+      {
+        alien.y += alignSpeed;
+      }
+    }
+  }
+
+
+
   //Move the alien
   alien.x += alien.vx;
   alien.y += alien.vy;
+
 
   //Alien' screen boundaries with 64 pixel padding
   //to compensate for screen border
