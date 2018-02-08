@@ -75,7 +75,7 @@ assetsToLoad.push(image);
 let bombsDefused = 0;
 
 //The game timer
-gameTimer.time = 1000;
+gameTimer.time = 20;
 gameTimer.start();
 
 //Sprites we need to access by name
