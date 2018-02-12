@@ -38,7 +38,7 @@ let gameObjects =
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0],
   [0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0],
@@ -59,6 +59,7 @@ const BOX = 2;
 const WALL = 3;
 const ALIEN = 4;
 const BOMB = 5;
+const MONSTER = 6;
 
 //The number of rows and columns
 const ROWS = map.length;
@@ -80,6 +81,7 @@ let sprites = [];
 let messages = [];
 let boxes = [];
 let bombs = [];
+let monsters = [];
 
 //Load the tile sheet
 let image = new Image();
@@ -100,6 +102,7 @@ let timeDisplay = null;
 let gameOverDisplay = null;
 let gameOverMessage = null;
 let timerMessage = null;
+let monster = null;
 
 //Arrow key codes
 const UP = 38;
@@ -300,6 +303,17 @@ function buildMap(levelMap)
             alien.Y = row * SIZE;
             sprites.push(alien);
             break;
+
+          case MONSTER:
+          let monsterWall = Object.create(monsterObject);
+          monsterWall.sourceX = 128;
+          monsterWall.sourceY = 0;
+          monsterWall.x = column * SIZE;
+          monsterWall.y = row * SIZE;
+          monsters.push(monsterWall);
+          sprites.push(monsterWall);
+          break;
+
         }
       }
     }
@@ -383,8 +397,84 @@ function update()
   render();
 }
 
+function changeDirection(monster)
+{
+  const Up = 1;
+  const DOWN = 2;
+  const LEFT = 3;
+  const RIGHT = 4;
+
+  let direction = Math.ceil(Math.random() * 7);
+
+  if(direction < 5)
+  {
+    switch(direction)
+    {
+      case RIGHT:
+        monster.vx = monster.speed;
+        monster.vy = 0;
+        break;
+
+      case LEFT:
+        monster.vx = -monster.speed;
+        monster.vy = 0;
+        break;
+
+      case UP:
+        monster.vx = 0;
+        monster.vy = -monster.speed;
+        break;
+
+      case DOWN:
+        monster.vx = 0;
+        monster.vy = monster.speed;
+        break;
+    }
+  }
+}
+
 function playGame()
 {
+
+  //Move the monsters
+  if(monsters.length !== 0)
+  {
+    for(i = 0; i < monsters.length; i++)
+    {
+      let monster = monsters[i];
+
+      monster.x += monster.vx;
+      monster.y += monster.vy;
+
+      //Check whetehr the monster is at a grid cell corner
+      if(Math.floor(monster.x) % SIZE === 0 && Math.floor(monster.y) % SIZE === 0)
+      {
+        //If it is at a corner, change direction
+        changeDirection(monster);
+      }
+
+      //Check the monster's gameWorld boundaries
+      if(monster.x < 0 + SIZE)
+      {
+        monster.x = SIZE;
+        changeDirection(monster);
+      }
+      if(monster.y < 0 + SIZE)
+      {
+        monster.y = SIZE;
+        changeDirection(monster);
+      }
+      if(monster.x + monster.width > gameWorld.width - SIZE)
+      {
+        monster.x = gameWorld.width - monster.width - SIZE;
+        changeDirection(monster);
+      }
+      if(monster.y + monster.height > gameWorld.height - SIZE)
+      {
+        monster.y = gameWorld.height - monster.height -SIZE;
+      }
+    }
+  }
 
   let speed = 4;
   //Up

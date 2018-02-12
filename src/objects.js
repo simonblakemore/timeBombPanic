@@ -34,6 +34,10 @@ let spriteObject =
   }
 };
 
+//--- The monster object
+let monsterObject = Object.create(spriteObject);
+monsterObject.speed = 1;
+
 //--- The message object
 
 let messageObject =
