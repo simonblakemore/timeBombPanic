@@ -592,7 +592,7 @@ function playGame()
     }
   }
 
-  let speed = 4;
+  let speed = 2;
   //Up
   if(moveUp && !moveDown)
   {
