@@ -38,6 +38,16 @@ let spriteObject =
 let monsterObject = Object.create(spriteObject);
 monsterObject.speed = 1;
 
+//Properties to help the monster change direction
+monsterObject.NONE = 0;
+monsterObject.UP = 1;
+monsterObject.DOWN = 2;
+monsterObject.LEFT = 3;
+monsterObject.RIGHT = 4;
+monsterObject.validDirections = [];
+monsterObject.direction = monsterObject.NONE;
+monsterObject.hunt = true;
+
 //--- The message object
 
 let messageObject =

@@ -14,20 +14,16 @@ let tileSheetColumns = 5;
 let map =
 [
   [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
-  [3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,3],
-  [3,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,3],
-  [3,1,1,1,1,2,1,1,1,2,2,2,1,1,1,1,1,2,1,1,1,3],
-  [3,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,3],
-  [3,1,1,2,2,2,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,3],
-  [3,1,1,1,1,1,1,1,2,2,1,1,2,1,1,1,2,2,2,1,1,3],
-  [3,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,3],
-  [3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,3],
-  [3,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,2,2,1,1,1,3],
-  [3,1,1,2,2,2,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,3],
-  [3,1,1,1,1,1,2,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3],
-  [3,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,2,2,2,1,3],
-  [3,1,1,2,1,1,1,1,1,2,2,1,1,2,2,1,2,1,1,1,1,3],
-  [3,1,1,2,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,3],
+  [3,1,1,1,1,1,1,1,1,1,1,2,1,2,1,1,1,2,1,1,1,3],
+  [3,1,2,2,1,2,1,2,1,2,1,1,1,2,1,2,1,2,1,1,1,3],
+  [3,1,1,1,1,2,1,2,1,2,2,2,1,2,1,2,1,2,1,1,1,3],
+  [3,1,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3],
+  [3,1,2,2,2,2,1,1,2,2,1,1,2,2,2,1,2,2,2,1,2,3],
+  [3,1,1,1,1,1,1,1,2,2,1,2,2,1,1,1,2,2,2,1,1,3],
+  [3,1,2,2,2,2,2,1,2,1,1,1,1,1,1,2,1,1,2,2,1,3],
+  [3,1,1,2,2,2,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,3],
+  [3,2,1,1,1,1,1,1,2,2,1,1,2,1,1,2,2,2,1,2,2,3],
+  [3,1,1,2,2,2,2,1,2,2,2,2,2,1,1,1,1,1,1,1,1,3],
   [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
 ];
 
@@ -42,13 +38,9 @@ let gameObjects =
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,5,0,0,0,0],
+  [0,6,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,5,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0],
+  [0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
@@ -93,7 +85,7 @@ assetsToLoad.push(image);
 let bombsDefused = 0;
 
 //The game timer
-gameTimer.time = 20;
+gameTimer.time = 100;
 gameTimer.start();
 
 //Sprites we need to access by name
@@ -310,6 +302,7 @@ function buildMap(levelMap)
           monsterWall.sourceY = 0;
           monsterWall.x = column * SIZE;
           monsterWall.y = row * SIZE;
+          changeDirection(monsterWall);
           monsters.push(monsterWall);
           sprites.push(monsterWall);
           break;
@@ -397,41 +390,155 @@ function update()
   render();
 }
 
-function changeDirection(monster)
+function findClosestDirection(monster)
 {
-  const Up = 1;
-  const DOWN = 2;
-  const LEFT = 3;
-  const RIGHT = 4;
+  let closestDirection = undefined;
 
-  let direction = Math.ceil(Math.random() * 7);
+  //Find the distance between the monster and the alien
+  let vx = alien.centerX() - monster.centerX();
+  let vy = alien.centerY() - monster.centerY();
 
-  if(direction < 5)
+  //If the distance is greater on the X axis...
+  if(Math.abs(vx) >= Math.abs(vy))
   {
-    switch(direction)
+    //Try left and right
+    if(vx <= 0)
     {
-      case RIGHT:
-        monster.vx = monster.speed;
-        monster.vy = 0;
-        break;
+      closestDirection = monsterObject.LEFT;
+    }
+    else
+    {
+      closestDrection = monsterObject.RIGHT;
+    }
+  }
+  //If the disatance is greater on the Y axis...
+  else
+  {
+    //Try up and down
+    if(vy <= 0)
+    {
+      closestDrection = monsterObject.UP;
+    }
+    else
+    {
+      closestDrection = monsterObject.DOWN;
+    }
+  }
 
-      case LEFT:
-        monster.vx = -monster.speed;
-        monster.vy = 0;
-        break;
-
-      case UP:
-        monster.vx = 0;
-        monster.vy = -monster.speed;
-        break;
-
-      case DOWN:
-        monster.vx = 0;
-        monster.vy = monster.speed;
-        break;
+  //Find out if the ClosestDirection is one of the validDirections
+  for (let i = 0; i < monster.validDirections.length; i++)
+  {
+    if(closestDirection === monster.validDirections[i])
+    {
+      //If it is, assign the closestDirection to the monsters direction
+      monster.direction = closestDirection;
     }
   }
 }
+
+function changeDirection(monster)
+{
+  //Clear any previous direction the monster has chosen
+  monster.validDirections = [];
+  monster.direction = monster.NONE;
+
+  //Find the monster's column and row in the array
+  let monsterColumn = Math.floor(monster.x / SIZE);
+  let monsterRow = Math.floor(monster.y / SIZE);
+
+  //Find out what kinds of things are in the map cells that
+  //surround the monster If the cells contain a FLOOR cell,
+  //push the corresponding direction into the validDirections array
+  if(monsterRow > 0)
+  {
+    let thingAbove = map[monsterRow - 1][monsterColumn];
+    if(thingAbove === FLOOR)
+    {
+      monster.validDirections.push(monster.UP);
+    }
+  }
+  if(monsterRow < ROWS - 1)
+  {
+    let thingBelow = map[monsterRow + 1][monsterColumn]
+    if(thingBelow === FLOOR)
+    {
+      monster.validDirections.push(monster.DOWN);
+    }
+  }
+  if(monsterColumn > 0)
+  {
+    let thingLeft = map[monsterRow][monsterColumn-1];
+    if(thingLeft === FLOOR)
+    {
+      monster.validDirections.push(monster.LEFT);
+    }
+  }
+  if(monsterColumn < COLUMNS - 1)
+  {
+    let thingRight = map[monsterRow][monsterColumn + 1];
+    if(thingRight === FLOOR)
+    {
+      monster.validDirections.push(monster.RIGHT);
+    }
+  }
+
+  //If a valid direction was found, figure out if the monster is at
+  //a maze passage intersection
+  if(monster.validDirections.length !== 0)
+  {
+    //find out if the monster is at an intersection
+    let upOrDownPassage
+      =(monster.validDirections.indexOf(monster.UP) !== -1
+      || monster.validDirections.indexOf(monster.DOWN) !== -1);
+
+    let leftOrRightPassage
+      =(monster.validDirections.indexOf(monster.LEFT) !== -1
+      || monster.validDirections.indexOf(monster.RIGHT) !== -1);
+
+    //Change the monsters direction if it is at an
+    //intersection or at a dead end
+    if(upOrDownPassage && leftOrRightPassage || monster.validDirections.length === 1)
+    {
+      //optionally find the closest distance to the alien
+      if(alien !== null && monster.hunt === true)
+      {
+        findClosestDirection(monster);
+      }
+
+      //Assign a random validDirection if the alien object doesn't exist in the game
+      //or a validDirection wasn't found that brings the monster closer to the alien
+      if(alien === null || monster.direction === monster.NONE)
+      {
+        let randomNumber = Math.floor(Math.random() * monster.validDirections.length);
+        monster.direction = monster.validDirections[randomNumber];
+      }
+
+      //choose the monster's final direction
+      switch(monster.direction)
+      {
+        case monster.RIGHT:
+          monster.vx = monster.speed;
+          monster.vy = 0;
+          break;
+
+        case monster.LEFT:
+          monster.vx = -monster.speed;
+          monster.vy = 0;
+          break;
+
+        case monster.UP:
+          monster.vx = 0;
+          monster.vy = -monster.speed;
+          break;
+
+        case monster.DOWN:
+          monster.vx = 0;
+          monster.vy = monster.speed;
+          break;
+        }
+      }
+    }
+  }
 
 function playGame()
 {
@@ -439,10 +546,11 @@ function playGame()
   //Move the monsters
   if(monsters.length !== 0)
   {
-    for(i = 0; i < monsters.length; i++)
+    for(let i = 0; i < monsters.length; i++)
     {
       let monster = monsters[i];
 
+      //Move the monsters
       monster.x += monster.vx;
       monster.y += monster.vy;
 
