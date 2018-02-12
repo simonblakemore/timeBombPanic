@@ -13,27 +13,43 @@ let tileSheetColumns = 5;
 //An array to set up the initial map
 let map =
 [
-  [3,3,3,3,3,3,3,3,3,3,3],
-  [3,1,1,1,1,1,1,1,1,1,3],
-  [3,1,2,2,2,1,2,1,2,1,3],
-  [3,1,1,2,1,1,1,1,1,1,3],
-  [3,1,1,1,1,2,1,1,2,1,3],
-  [3,1,2,1,2,2,1,2,2,1,3],
-  [3,1,1,1,1,1,2,1,1,1,3],
-  [3,3,3,3,3,3,3,3,3,3,3]
+  [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
+  [3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,3],
+  [3,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,3],
+  [3,1,1,1,1,2,1,1,1,2,2,2,1,1,1,1,1,2,1,1,1,3],
+  [3,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,3],
+  [3,1,1,2,2,2,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,3],
+  [3,1,1,1,1,1,1,1,2,2,1,1,2,1,1,1,2,2,2,1,1,3],
+  [3,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1,1,1,1,1,3],
+  [3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,3],
+  [3,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,2,2,1,1,1,3],
+  [3,1,1,2,2,2,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,3],
+  [3,1,1,1,1,1,2,1,1,2,1,1,2,2,2,2,2,1,1,1,1,3],
+  [3,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,2,2,2,1,3],
+  [3,1,1,2,1,1,1,1,1,2,2,1,1,2,2,1,2,1,1,1,1,3],
+  [3,1,1,2,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,3],
+  [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
 ];
 
 //An array to position the game objects
 let gameObjects =
 [
-  [0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0,0,5,0],
-  [0,0,0,0,0,4,0,0,0,0,0],
-  [0,0,5,0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,5,0,0,0,0],
-  [0,0,0,0,5,0,0,5,0,0,0],
-  [0,0,0,0,0,0,0,0,0,0,0]
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0],
+  [0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,5,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
 //Map code
@@ -100,6 +116,43 @@ let wasMovingUp = false;
 let wasMovingDown = false;
 let wasMovingRight = false;
 let wasMovingLeft = false;
+
+let gameWorld =
+{
+  x: 0,
+  y: 0,
+  width: map[0].length * SIZE,
+  height: map.length * SIZE
+};
+
+let camera =
+{
+  x: 0,
+  y: 0,
+  width: canvas.width,
+  height: canvas.height,
+
+  //The camera's inner scroll boundaries
+  rightInnerBoundary: function()
+  {
+    return this.x +(this.width / 2) + (this.width /4);
+  },
+  leftInnerBoundary: function()
+  {
+    return this.x + (this.width / 2) - (this.width / 4);
+  },
+  topInnerBoundary: function()
+  {
+    return this.y + (this.height / 2) - (this.height / 4);
+  },
+  bottomInnerBoundary: function()
+  {
+    return this.y + (this.height / 2) + (this.height / 4);
+  }
+};
+
+camera.x = (gameWorld.x + gameWorld.width / 2) - camera.width / 2;
+camera.Y = (gameWorld.y + gameWorld.height / 2) - camera.width / 2;
 
 //Add keyboard listeners
 window.addEventListener("keydown", function(event)
@@ -264,6 +317,7 @@ function createOtherObjects()
   timeDisplay.height = 48;
   timeDisplay.x = (canvas.width / 2) - (timeDisplay.width / 2);
   timeDisplay.y = 8;
+  timeDisplay.scrollable = false;
   sprites.push(timeDisplay);
 
   gameOverDisplay = Object.create(spriteObject);
@@ -276,6 +330,7 @@ function createOtherObjects()
   gameOverDisplay.x = (canvas.width / 2) - (gameOverDisplay.width / 2);
   gameOverDisplay.y = (canvas.height /2) - (gameOverDisplay.height /2);
   gameOverDisplay.visible = false;
+  gameOverDisplay.scrollable = false;
   sprites.push(gameOverDisplay);
 
   gameOverMessage = Object.create(messageObject);
@@ -403,22 +458,27 @@ function playGame()
 
   //Alien' screen boundaries with 64 pixel padding
   //to compensate for screen border
-  if(alien.x < 64)
-  {
-    alien.x = 64;
-  }
-  if(alien.y < 64)
-  {
-    alien.y = 64;
-  }
-  if(alien.x + alien.width > canvas.width - 64)
-  {
-    alien.x = canvas.width - alien.width - 64;
-  }
-  if(alien.y + alien.height > canvas.height - 64)
-  {
-    alien.y = canvas.height - alien.height - 64;
-  }
+  // if(alien.x < 64)
+  // {
+  //   alien.x = 64;
+  // }
+  // if(alien.y < 64)
+  // {
+  //   alien.y = 64;
+  // }
+  // if(alien.x + alien.width > canvas.width - 64)
+  // {
+  //   alien.x = canvas.width - alien.width - 64;
+  // }
+  // if(alien.y + alien.height > canvas.height - 64)
+  // {
+  //   alien.y = canvas.height - alien.height - 64;
+  // }
+
+  //Aliens game world boundaries with 64 pixel padding to compensate
+  //for the game world's border.
+  alien.x = Math.max(64, Math.min(alien.x + alien.vx, gameWorld.width - alien.width - 64));
+  alien.y = Math.max(64, Math.min(alien.y + alien.vy, gameWorld.height - alien.height - 64));
 
   //Collisions with boxes
   for(let i = 0; i < boxes.length; i++)
@@ -460,6 +520,42 @@ function playGame()
     gameState = OVER;
   }
 
+  //Scroll the camera
+  if(alien.x < camera.leftInnerBoundary())
+  {
+    camera.x = Math.floor(alien.x - (camera.width / 4));
+  }
+  if(alien.y < camera.topInnerBoundary())
+  {
+    camera.y = Math.floor(alien.y - (camera.height /4));
+  }
+  if(alien.x + alien.width > camera.rightInnerBoundary())
+  {
+    camera.x = Math.floor(alien.x + alien.width - (camera.width / 4 * 3));
+  }
+  if(alien.y + alien.height > camera.bottomInnerBoundary())
+  {
+    camera.y = Math.floor(alien.y + alien.height - (camera.height / 4 * 3));
+  }
+
+  //The camera's gameWorld boundaries
+  if(camera.x < gameWorld.x)
+  {
+    camera.x = gameWorld.x;
+  }
+  if(camera.y < gameWorld.y)
+  {
+    camera.y = gameWorld.y;
+  }
+  if(camera.x + camera.width > gameWorld.x + gameWorld.width)
+  {
+    camera.x = gameWorld.x + gameWorld.width - camera.width;
+  }
+  if(camera.y + camera.height > gameWorld.height)
+  {
+    camera.y = gameWorld.height - camera.height;
+  }
+
 }
 
 function endGame()
@@ -480,7 +576,12 @@ function endGame()
 
 function render()
 {
+  //Clear the drawing surface
   drawingSurface.clearRect(0, 0, canvas.width, canvas.height);
+
+  //Position the gameWorld relative to the camera
+  drawingSurface.save();
+  drawingSurface.translate(-camera.x, -camera.y);
 
   //Display the sprites
   if(sprites.length !== 0)
@@ -488,7 +589,9 @@ function render()
     for(let i = 0; i < sprites.length; i++)
     {
       let sprite = sprites[i];
-      if(sprite.visible)
+
+      //Display the scrolling sprites
+      if(sprite.visible && sprite.scrollable)
       {
         drawingSurface.drawImage
         (
@@ -499,8 +602,23 @@ function render()
           sprite.width, sprite.height
         );
       }
+
+      //Display the non scrolling sprites
+      if(sprite.visible && !sprite.scrollable)
+      {
+        drawingSurface.drawImage
+        (
+          image,
+          sprite.sourceX, sprite.sourceY,
+          sprite.sourceWidth, sprite.sourceHeight,
+          Math.floor(camera.x + sprite.x), Math.floor(camera.y + sprite.y),
+          sprite.width, sprite.height
+        );
+      }
     }
   }
+
+  drawingSurface.restore();
 
   //Display the game messages
   if(messages.length !== 0)

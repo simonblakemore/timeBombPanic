@@ -13,6 +13,7 @@ let spriteObject =
   vx: 0,
   vy: 0,
   visible: true,
+  scrollable: true,
 
   //Getters
   centerX: function()
